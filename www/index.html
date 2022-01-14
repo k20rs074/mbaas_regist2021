@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<html lang="ja">
 <html>
 <head>
     <meta charset="utf-8">
@@ -8,6 +9,8 @@
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="keys.js"></script>
+    <script src="js/main.js"></script>
+    <title>StopWatch</title>
     <script>
     // NCMB アクセスの準備
     var ncmb = new NCMB(appKey, clientKey);
@@ -16,37 +19,40 @@
     // コールバックの登録など
     $(function(){
       $("#message").html("initialized");
-      $("#btnA").click(function(e){
-        btnAClick(e);
-      })
+      // $("#btnA").click(function(e){
+      //   btnAClick(e);
+      // })
       $("#btnB").click(function(e){
         btnBClick(e);
       })
     });
 
-    function btnAClick(e) {
-      // 登録するレコードを用意
-      var testClass = new TestClass();
-      var key = $("#field").val();
-      var value = $("#value").val();
-      // レコードのフィールドと値を設定
-      testClass.set(key, value);
-      // レコードをデータベースに登録
-      testClass.save();
-      $("#message").html("btnA clicked !");
-    }
+    // function btnAClick(e) {
+    //   // 登録するレコードを用意
+    //   var testClass = new TestClass();
+    //   var key = $("#field").val();
+    //   var value = $("#value").val();
+    //   // レコードのフィールドと値を設定
+    //   testClass.set(key, value);
+    //   // レコードをデータベースに登録
+    //   testClass.save();
+    //   $("#message").html("btnA clicked !");
+    // }
 
     function btnBClick(e) {
       // 登録するレコードを用意
       var testClass = new TestClass();
       var key = $("#field").val();
+      var NAME = $("#NAME").val();
       var value = $("#value").val();
+      var name = $("#name").val();
       // レコードのフィールドと値を設定
-      testClass.set(key, value);
+      testClass.set(key,value);
+      testClass.set(NAME,name);
       // レコードをデータベースに登録
       testClass.save()
       .then(function(m) {
-        $("#message").html("New object created with objectId: " + testClass.objectId);
+        $("#message").html("記録の追加に成功しました！: " + testClass.objectId);
       })
       .catch(function(err){
         $("#message").html("Failed to create new object, with error code: " + JSON.stringify(err));
@@ -55,14 +61,32 @@
     </script>
 </head>
 <body>
-  <h1>Registration Sample</h1>
+  <h1>StopWatch</h1>
+  
+   <div class="container">
+    <div id="timer">00:00.000</div>
+    <div class="controls">
+      <div id="start" class="btn">Start</div>
+      <div id="stop" class="btn">Stop</div>
+      <div id="reset" class="btn">Reset</div>
+    </div>
+  </div>
+
   <div>
     <label for="field">Field:</label>
-    <input id="field" type="text" value="message">
+    <input id="field" type="text" value="time">
+  </div>
+   <div>
+    <label for="NAME">Field2:</label>
+    <input id="NAME" type="text" value="NAME">
   </div>
   <div>
-    <label for="value">Value:</label>
-    <input id="value" type="text" value="Hello, mBaaS!">
+    <label for="name">名前:</label>
+    <input id="name" type="text" value="">
+  </div>
+  <div>
+    <label for="value">秒数記録:</label>
+    <input id="value" type="text" value="">
   </div>
   <div id="button">
     <button id="btnA" class="btn">Regist 1</button>
