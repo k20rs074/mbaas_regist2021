@@ -27,23 +27,23 @@
 
   // 状態:初期 または Reset直後
   function setButtonStateInitial() {
-    start.classList.remove('inactive'); // 活性
-    stop.classList.add('inactive')    // 非活性
-    reset.classList.add('inactive')   // 非活性
+    start.classList.remove('inactive'); 
+    stop.classList.add('inactive')    
+    reset.classList.add('inactive')   
   }
 
   // 状態:タイマー動作中
   function setButtonStateRunning() {
-    start.classList.add('inactive');   // 非活性
-    stop.classList.remove('inactive');  // 活性
-    reset.classList.add('inactive')   // 非活性
+    start.classList.add('inactive');   
+    stop.classList.remove('inactive');  
+    reset.classList.add('inactive')   
   }
 
   // 状態:タイマー停止中
   function setButtonStateStopped() {
-    start.classList.remove('inactive'); // 活性
-    stop.classList.add('inactive')    // 非活性
-    reset.classList.remove('inactive'); // 活性
+    start.classList.remove('inactive'); 
+    stop.classList.add('inactive')    
+    reset.classList.remove('inactive'); 
   }
 
   // ボタンを'初期'状態とする
